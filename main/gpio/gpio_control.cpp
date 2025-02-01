@@ -1,4 +1,4 @@
-#include "gpio_control.h"
+#include "gpio_control.hpp"
 #include <stdio.h>
 
 // These are the pins that can be set to outputs
@@ -25,12 +25,12 @@ const gpio_num_t gpio_pins[] = {
 };
 
 void configure_gpio_pins_as_output() {
-    size_t num_pins = sizeof(gpio_pins) / sizeof(gpio_pins[0]);
+    size_t num_gpio_pins = sizeof(gpio_pins) / sizeof(gpio_pins[0]);
 
-    for (size_t i = 0; i < num_pins; i++) {
-        esp_err_t ret = gpio_set_direction(gpio_pins[i], GPIO_MODE_OUTPUT);
-        if (ret != ESP_OK) {
-            printf("Failed to set direction for GPIO %d\n", gpio_pins[i]);
+    for (size_t i = 0; i < num_gpio_pins; i++) {
+        esp_err_t status = gpio_set_direction(gpio_pins[i], GPIO_MODE_OUTPUT);
+        if (status != ESP_OK) {
+            fprintf(stderr, "Failed to set direction for GPIO %d\n", gpio_pins[i]);
         }
     }
 }
@@ -39,9 +39,9 @@ void turn_on_all_gpio_outputs() {
     size_t num_pins = sizeof(gpio_pins) / sizeof(gpio_pins[0]);
 
     for (size_t i = 0; i < num_pins; i++) {
-        esp_err_t ret = gpio_set_level(gpio_pins[i], 1);
-        if (ret != ESP_OK) {
-            printf("Failed to set high level for GPIO %d\n", gpio_pins[i]);
+        esp_err_t status = gpio_set_level(gpio_pins[i], 1);
+        if (status != ESP_OK) {
+            fprintf(stderr, "Failed to set high level for GPIO %d\n", gpio_pins[i]);
         }
     }
 }
@@ -50,9 +50,9 @@ void turn_off_all_gpio_outputs() {
     size_t num_pins = sizeof(gpio_pins) / sizeof(gpio_pins[0]);
 
     for (size_t i = 0; i < num_pins; i++) {
-        esp_err_t ret = gpio_set_level(gpio_pins[i], 0);
-        if (ret != ESP_OK) {
-            printf("Failed to set low level for GPIO %d\n", gpio_pins[i]);
+        esp_err_t status = gpio_set_level(gpio_pins[i], 0);
+        if (status != ESP_OK) {
+            fprintf(stderr, "Failed to set low level for GPIO %d\n", gpio_pins[i]);
         }
     }
 }

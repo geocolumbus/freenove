@@ -1,7 +1,4 @@
-idf_component_register(SRCS "main.cpp" "gpio_control.cpp"
-                       INCLUDE_DIRS "."
-                       REQUIRES driver
-                       REQUIRES esp_timer
-                       REQUIRES esp_wifi
-                       REQUIRES nvs_flash
+idf_component_register(SRCS "main.cpp" "gpio/gpio_control.cpp" "wifi/AppWifi.cpp"
+                       INCLUDE_DIRS "." "gpio" "wifi"
+                       REQUIRES driver esp_timer esp_wifi nvs_flash
                        )

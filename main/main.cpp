@@ -1,8 +1,8 @@
 #include "freertos/FreeRTOS.h"
-#include "gpio_control.h"
+#include "gpio/gpio_control.hpp"
 #include <iostream>
 
-#include "AppWifi.hpp"
+#include "wifi/AppWifi.hpp"
 #include "esp_log.h"
 #include <cinttypes>
 
@@ -22,15 +22,18 @@ auto disconnected = []() {
 
 void setup() {
     std::cout << "\nSerial port works.\n";
-    configure_gpio_pins_as_output(); // Your GPIO configuration function
-    setup_periodic_timer();          // Your timer setup function
+    configure_gpio_pins_as_output(); 
+    setup_periodic_timer();        
 
     app_wifi.init(connected, disconnected);
     app_wifi.connect();
 }
 
+bool tick = true;
+
 void loop() {
-    std::cout << "Slow tick\n";
+    std::cout << (tick ? "tick\n" : "       tock\n");
+    tick = !tick;
     vTaskDelay(1000 / portTICK_PERIOD_MS); // Delay for 1 second
 }
 
