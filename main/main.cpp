@@ -1,10 +1,9 @@
-#include "freertos/FreeRTOS.h"
-#include "gpio/gpio_control.hpp"
-#include <iostream>
-
-#include "wifi/AppWifi.hpp"
-#include "esp_log.h"
 #include <cinttypes>
+#include <iostream>
+#include "freertos/FreeRTOS.h"
+#include "esp_log.h"
+#include "gpio_control.hpp"
+#include "AppWifi.hpp"
 
 #define TAG "app"
 

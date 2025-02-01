@@ -1,5 +1,7 @@
-#include "gpio_control.hpp"
+#pragma once 
 #include <stdio.h>
+#include "driver/gpio.h"
+#include "esp_timer.h"
 
 // These are the pins that can be set to outputs
 const gpio_num_t gpio_pins[] = {
